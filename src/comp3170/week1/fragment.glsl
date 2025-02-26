@@ -8,7 +8,9 @@ layout(location = 0) out vec4 o_colour;	// output to colour buffer
 void main() {
    vec2 p = gl_FragCoord.xy / u_screenSize;   // scale p into range (0,0) to (1,1)
    vec2 v = abs(p - vec2(0.5, 0.5));
-   float d = max(v.x, v.y); 
+   float d = max(v.x + v.y, v.y + v.x); 
+   
+   // ^^ Returns x if x>y and y if y>x
   
    if (d < 0.4) {
       o_colour = vec4(u_colour, 1);
